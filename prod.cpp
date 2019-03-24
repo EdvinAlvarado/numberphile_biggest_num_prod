@@ -13,52 +13,49 @@ int multdigits(int n) {
 // 		int digit  = c_digit - '0' 
 // 		// this changes a char into their digit int
 // 	}
-	// n%10 gives you the last digit
-	// n/10 gives you all the digits except the last one
-	vector<double> v;
-	while(n>0) {
-		v.push_back(n % 10);
-		n /= 10;
-	}
-	// vector is backwards as because we put the last number first 
-	reverse(v.begin(), v.end());
 	// for (auto &&i: v) {
 	// 	cout << i << " ";
 	// }
-	// cout << "\n" << v[1] << endl;
-	while (v.size() != 1) {		
-		// checks if element is not in vector
-		if(find(v.begin(), v.end(), 1) == v.end()) {
-			if(find(v.begin(), v.end(), 0) == v.end()) {
-				if(find(v.begin(), v.end(), 5) == v.end()) {
+	// cout << "\n" << v[1] << endl;	
+	// n%10 gives you the last digit	
+	// n/10 gives you all the digits except the last one
+	int v_parser = n;
+	vector<double> v;
+	while(v_parser>0) {
+		v.push_back(v_parser % 10);
+		v_parser /= 10;
+	}
+	// vector is backwards as because we put the last number first 
+	reverse(v.begin(), v.end());	
+	// checks if element is not in vector
+	if(find(v.begin(), v.end(), 1) == v.end()) {
+		if(find(v.begin(), v.end(), 0) == v.end()) {
+			if(find(v.begin(), v.end(), 5) == v.end()) {
+				// cout << "number: " << n << "\t";
+				while (v.size() != 1) {	
+					// cout << "number: " << n << "\n";	
 					n = accumulate(v.begin(), v.end(), 1, multiplies<double>());
-					// cout << n << " ";
+					// cout << "mult: "<< n << "\t";
 					v.clear();
-					while(n>0) {
-						v.push_back(n%10);
-						n/=10;
+					v_parser = n;
+					while(v_parser>0) {
+						v.push_back(v_parser % 10);
+						v_parser /= 10;
 					}
 					reverse(v.begin(), v.end());
 					counter += 1;
-					// cout << counter << " " << v.size() << endl;
+					// cout << "counter: " << counter << "\tv_size: " << v.size() << endl;
 				}
-				else {break;}
+				// cout << "counter: " << counter << endl;
 			}
-			else {break;}
 		}
-		else {
-			// cout << counter << endl;
-			break;
-		}	
 	}
-	// cout << counter << " ";
 	return counter;
-
 }
 
 int main() {
 	int max_counter = 0;
-	for (int i = 1; i <= 1e6; i++ ) {
+	for (int i = 1e8; i <= 1e9; i++ ) {
 		// cout << "i " << i << "\n";
 		max_counter = max(max_counter, multdigits(i));
 	}

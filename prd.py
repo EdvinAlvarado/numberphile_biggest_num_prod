@@ -19,6 +19,7 @@ def multdigits(n):
 		return counter
 	return 0
 
+
 # print(int(1e6))
 max_n = 0
 for n in range(1, int(1e6)):
