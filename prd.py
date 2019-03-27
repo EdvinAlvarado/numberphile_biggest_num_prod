@@ -1,4 +1,5 @@
 import numpy as np
+from time import time
 # n = 12677889
 def multdigits(n):
 	# strn = str(n)
@@ -19,7 +20,7 @@ def multdigits(n):
 		return counter
 	return 0
 
-
+t0 = time()
 # print(int(1e6))
 max_n = 0
 for n in range(1, int(1e6)):
@@ -27,3 +28,4 @@ for n in range(1, int(1e6)):
 	# print(max_n)
 
 print(max_n)
+print("T: %.2f" % (time()-t0))
